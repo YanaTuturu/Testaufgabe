@@ -1,14 +1,16 @@
 # Testaufgabe
 
 Main Program can be found in Testaufgabe -> Program.cs
+
 Unit test can be found in RomanNumeralTests -> UnitTest1.cs
+
 Total time: 2h
 
 This console application converts Roman numerals (like "XIV") into integer numbers (like 14). It includes functions to check if the input is valid and then convert it, along with tests to make sure everything works correctly.
 
 Methods:
 1. Input Validation (ValueCheck function) - checks if the input not empty and only contains valid Roman numeral characters (I, V, X, L, C, D, M). This step helps avoid errors by making sure only correct characters are processed.
-2.Roman Numeral Conversion (RomToInt function) - goes through each character in the Roman numeral, turning it into a number using a helper function. The function adjusts for cases where a smaller numeral comes before a larger one (e.g., "IV" should be 4, not 6).
+2. Roman Numeral Conversion (RomToInt function) - goes through each character in the Roman numeral, turning it into a number using a helper function. The function adjusts for cases where a smaller numeral comes before a larger one (e.g., "IV" should be 4, not 6).
 3. Helper Function (RomanValue function)- matches each Roman numeral letter to its integer value. This makes it easier to update or check values in one place.
 
 Progress:
