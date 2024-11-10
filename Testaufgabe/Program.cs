@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Testaufgabe
 {
@@ -12,7 +13,7 @@ namespace Testaufgabe
             // Validate the input and convert if valid
             if (ValueCheck(number))
             {
-                int output = romToInt(number);
+                int output = RomToInt(number);
                 Console.WriteLine(output);
             }
             else
@@ -22,7 +23,7 @@ namespace Testaufgabe
         }
 
         //Checking if the input string contains only valid Roman numeral characters
-        public static bool ValueCheck (string? input)
+        public static bool ValueCheck(string? input)
         {
             if (string.IsNullOrEmpty(input))
                 return false;
@@ -36,44 +37,52 @@ namespace Testaufgabe
         }
 
         //Convert a Roman numeral to an integer
-        public static int romToInt( string romNum)
+        public static int RomToInt(string romNum)
         {
             int intNum = 0;
-            for (int i = 0; i<romNum.Length; i++)
+            for (int i = 0; i < romNum.Length; i++)
             {
-                // Check for subtractive combinations (for example IV, IX)
-                if ("IXC".Contains(romNum[i]) && (i + 1 < romNum.Length) && (romNum[i] != romNum[i+1]))
+                int currentVal = RomanValue(romNum[i]);
+                int nextVal;
+
+                // Determine the value of the next Roman numeral character, if it exists
+                if (i + 1 < romNum.Length)
                 {
-                    string singleValue = romNum[i].ToString() + romNum[i + 1];
-                    intNum += RomanValue(singleValue);
-                    i++; // Skip the next character as it is part of the current combination
+                    nextVal = RomanValue(romNum[i + 1]);
                 }
                 else
                 {
-                    intNum += RomanValue(romNum[i].ToString());
+                    nextVal = 0;
+                }
+
+                // If the current value is less than the next value, subtract the current value from the next value
+                // and add the result to the total, then skip the next character
+                if (currentVal < nextVal)
+                {
+                    intNum += (nextVal - currentVal);
+                    i++;
+                }
+                // Otherwise, just add the current value to the total
+                else
+                {
+                    intNum += currentVal;
                 }
             }
             return intNum;
         }
 
         // Method to get the integer value of a Roman numeral character or combination
-        public static int RomanValue(string Num)
+        public static int RomanValue(char Num)
         {
             return Num switch
             {
-                "I" => 1,
-                "IV" => 4,
-                "V" => 5,
-                "IX" => 9,
-                "X" => 10,
-                "XL" => 40,
-                "L" => 50,
-                "XC" => 90,
-                "C" => 100,
-                "CD" => 400,
-                "D" => 500,
-                "CM" => 900,
-                "M" => 1000,
+                'I' => 1,
+                'V' => 5,
+                'X' => 10,
+                'L' => 50,
+                'C' => 100,
+                'D' => 500,
+                'M' => 1000,
                 _ => 0,
             };
         }
