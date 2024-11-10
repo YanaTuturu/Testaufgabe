@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Testaufgabe
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
