@@ -1,6 +1,7 @@
 # Testaufgabe
 
-Main Programcan be found in Testaufgabe -> Program.cs
+Main Program can be found in Testaufgabe -> Program.cs
+Unit test can be found in RomanNumeralTests -> UnitTest1.cs
 Total time: 2h
 
 This console application converts Roman numerals (like "XIV") into integer numbers (like 14). It includes functions to check if the input is valid and then convert it, along with tests to make sure everything works correctly.
